@@ -19,7 +19,7 @@ function CountriesGrid(props) {
   const [isLoading, setIsloading] = useState(false)
   const [requestCount, setRequestCount] = useState(0)
   const [reqFilterCount, setReqFilterCount] = useState(0)
-  console.log(props)
+  // console.log(props)
   useEffect(() => {
     if (
       props.match.params.filterName !== undefined &&
@@ -91,7 +91,11 @@ function CountriesGrid(props) {
         filterSelection !== undefined
       ) {
         axios
-          .get(`https://restcountries.eu/rest/v2/region/${filterSelection}`)
+          .get(
+            filterSelection === "All"
+              ? "https://restcountries.eu/rest/v2/all"
+              : `https://restcountries.eu/rest/v2/region/${filterSelection}`
+          )
           .then(response => {
             setIsloading(false)
             setCountries(response.data)
@@ -217,7 +221,7 @@ function CountriesGrid(props) {
         })
         .catch(error => {
           setIsloading(false)
-          console.log("unhandled=", error.reponse)
+          // console.log("unhandled=", error.reponse)
           if (error.response.data.status === 404) {
             setError("Please enter valid country")
           } else {
@@ -276,7 +280,7 @@ function CountriesGrid(props) {
                 <KeyboardArrowDownIcon style={{ fontSize: "1.1rem" }} />
               </span>
             </div>
-            <div className="region-list" id="reg-list">
+            <div className="region-list" id="reg-list" style={{ opacity: 0.9 }}>
               <ul>
                 <li id={0} onClick={e => handleFilter(e)}>
                   All

@@ -34,7 +34,7 @@ function Details(props) {
   useEffect(() => {
     darkModeToggle(window.localStorage.getItem("mode"))
   }, [countryData, error])
-  console.log("from details=", props)
+  // console.log("from details=", props)
   return (
     <>
       {countryData !== null &&

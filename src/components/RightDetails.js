@@ -21,7 +21,7 @@ function RightDetails({ singleCountry }) {
       .catch(error => {
         if (error.response.data.status === 400) {
           setError("No neighbours present")
-          console.log("error=", error.response.data)
+          // console.log("error=", error.response.data)
           setIsloading(false)
         } else {
           setIsloading(false)

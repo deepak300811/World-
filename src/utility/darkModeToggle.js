@@ -10,7 +10,7 @@ export const darkModeToggle = mode => {
       "0px 0px 0px 0px"
     )
     if (docVar !== null) {
-      console.log(docVar)
+      // console.log(docVar)
       document.getElementById("search").focus()
       document.getElementById("holder-container").classList.add("dark")
 
@@ -46,7 +46,7 @@ export const darkModeToggle = mode => {
       "0px -2px 16px -2px #c4c4c4"
     )
     if (docVar !== null) {
-      console.log(docVar)
+      // console.log(docVar)
       document.getElementById("holder-container").classList.remove("dark")
 
       document.getElementById("search-icon").style.color = "rgb(133, 133, 133)"
@@ -68,28 +68,4 @@ export const darkModeToggle = mode => {
       errorDetDiv.style.color = "#000"
     }
   }
-
-  //   document.getElementById("header").classList.toggle("dark")
-  //   document.getElementsByTagName("BODY")[0].classList.toggle("dark")
-  //   let docVar = document.getElementById("holder-container")
-  //   if (docVar !== null) {
-  //     console.log(docVar)
-  //     document.getElementById("holder-container").classList.toggle("dark")
-  //     if (
-  //       document.getElementById("holder-container").classList.contains("dark")
-  //     ) {
-  //       document.documentElement.style.setProperty(
-  //         "--bbox-shadow",
-  //         "0px 0px 0px 0px"
-  //       )
-  //       document.getElementById("search-icon").style.color = "#fff"
-  //     } else {
-  //       document.documentElement.style.setProperty(
-  //         "--bbox-shadow",
-  //         "0px -2px 16px -2px #c4c4c4"
-  //       )
-  //       document.getElementById("search-icon").style.color = "rgb(133, 133, 133)"
-  //     }
-  //     document.querySelector(".search-filter").classList.toggle("dark")
-  //   }
 }

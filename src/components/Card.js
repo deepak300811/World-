@@ -7,7 +7,7 @@ function Card(props) {
     <>
       <NavLink
         id="nav-link"
-        to={`/country/${name}/${input || "noInput"}/${filter || "noFilter"}`}
+        to={`/country/${input || "noInput"}/${filter || "noFilter"}/${name}`}
         style={{ textDecoration: "none", color: "#000" }}
       >
         <div className="card">
