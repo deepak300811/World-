@@ -2,7 +2,9 @@
 
 # dependencies
 /node_modules
+/design
 /.pnp
+/style-guide.md
 .pnp.js
 
 # testing
