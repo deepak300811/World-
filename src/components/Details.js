@@ -48,7 +48,7 @@ function Details(props) {
                 <NavLink
                   className="btn-style"
                   id="nav-link"
-                  to={`/${props.match.params.input}/${props.match.params.filter}`}
+                  to={`/${props.match.params.filter}/${props.match.params.input}`}
                   style={{ textDecoration: "none" }}
                   // onClick={() => props.history.goBack()}
                 >
