@@ -10,7 +10,7 @@ function App() {
       <Header />
 
       <Switch>
-        <Route path="/country/:input/:filter/:name" exact component={Details} />
+        <Route path="/country/:filter/:input/:name" exact component={Details} />
         <Route path="/countrydetails/:name" exact component={Details} />
 
         <Route
