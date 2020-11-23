@@ -14,7 +14,7 @@ function App() {
         <Route path="/countrydetails/:name" exact component={Details} />
 
         <Route
-          path="/:countryName/:filterName"
+          path="/:filterName/:countryName"
           exact
           component={CountriesGrid}
         />
