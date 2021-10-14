@@ -1,34 +1,37 @@
-import React, { useEffect, useState } from "react"
-import axios from "axios"
-import { convertPopulation } from "../utility/convertPopulation"
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { convertPopulation } from "../utility/convertPopulation";
+import { base_endpoint } from "../utility/constants";
 
 function RightDetails({ singleCountry }) {
-  const [neighbours, setNeighbours] = useState([])
-  const [error, setError] = useState("")
-  const [isLoading, setIsloading] = useState(false)
+  const [neighbours, setNeighbours] = useState([]);
+  const [error, setError] = useState("");
+  const [isLoading, setIsloading] = useState(false);
   useEffect(() => {
-    setIsloading(true)
-    axios
-      .get(
-        `https://restcountries.eu/rest/v2/alpha?codes=${singleCountry.borders.join(
-          ";"
-        )}`
-      )
-      .then(response => {
-        setNeighbours(prev => (prev.data = response.data))
-        setIsloading(false)
-      })
-      .catch(error => {
-        if (error.response.data.status === 400) {
-          setError("No neighbours present")
-          // console.log("error=", error.response.data)
-          setIsloading(false)
-        } else {
-          setIsloading(false)
-          setError("Something Went Wrong!")
-        }
-      })
-  }, [])
+    if (singleCountry.borders) {
+      setIsloading(true);
+      axios
+        .get(`${base_endpoint}/alpha?codes=${singleCountry.borders.join(";")}`)
+        .then((response) => {
+          setNeighbours((prev) => (prev.data = response.data));
+          setIsloading(false);
+        })
+        .catch((error) => {
+          if (error.response.data.status === 400) {
+            setError("No neighbours present");
+            // console.log("error=", error.response.data)
+            setIsloading(false);
+          } else {
+            setIsloading(false);
+            setError("Something Went Wrong!");
+          }
+        });
+    } else {
+      setError("No neighbours present");
+      // console.log("error=", error.response.data)
+      setIsloading(false);
+    }
+  }, []);
   return (
     <>
       {singleCountry !== null &&
@@ -84,7 +87,7 @@ function RightDetails({ singleCountry }) {
               <p>
                 Languages:{" "}
                 <span className="value-light">
-                  {singleCountry.languages.map(lang => lang.name).join(", ")}
+                  {singleCountry.languages.map((lang) => lang.name).join(", ")}
                 </span>
               </p>
             </div>
@@ -97,7 +100,7 @@ function RightDetails({ singleCountry }) {
               ) : error !== null && error !== undefined && error !== "" ? (
                 <p className="error-info">{error}</p>
               ) : (
-                neighbours.map(neighbour => {
+                neighbours.map((neighbour) => {
                   return (
                     <span
                       className="value-light btn-style neighbour"
@@ -105,7 +108,7 @@ function RightDetails({ singleCountry }) {
                     >
                       {neighbour.name}
                     </span>
-                  )
+                  );
                 })
               )}
               {/* 
@@ -119,7 +122,7 @@ function RightDetails({ singleCountry }) {
         <p>Loading...</p>
       )}
     </>
-  )
+  );
 }
 
-export default RightDetails
+export default RightDetails;

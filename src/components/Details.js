@@ -1,39 +1,38 @@
-import React, { useState, useEffect } from "react"
-import RightDetails from "./RightDetails"
-import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace"
-import axios from "axios"
-import { darkModeToggle } from "../utility/darkModeToggle"
-import { NavLink } from "react-router-dom"
-import { LinearProgress } from "@material-ui/core"
+import React, { useState, useEffect } from "react";
+import RightDetails from "./RightDetails";
+import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
+import axios from "axios";
+import { darkModeToggle } from "../utility/darkModeToggle";
+import { NavLink } from "react-router-dom";
+import { LinearProgress } from "@material-ui/core";
+import { base_endpoint } from "../utility/constants";
 
 function Details(props) {
-  const [countryData, setCountryData] = useState([])
-  const [error, setError] = useState("")
-  const [isLoading, setIsloading] = useState(false)
+  const [countryData, setCountryData] = useState([]);
+  const [error, setError] = useState("");
+  const [isLoading, setIsloading] = useState(false);
   useEffect(() => {
-    setIsloading(true)
+    setIsloading(true);
     axios
-      .get(
-        `https://restcountries.eu/rest/v2/name/${props.match.params.name}?fullText=true`
-      )
-      .then(response => {
-        setCountryData(prev => (prev.data = response.data))
-        setIsloading(false)
+      .get(`${base_endpoint}/name/${props.match.params.name}?fullText=true`)
+      .then((response) => {
+        setCountryData((prev) => (prev.data = response.data));
+        setIsloading(false);
       })
-      .catch(error => {
-        setIsloading(false)
+      .catch((error) => {
+        setIsloading(false);
         if (error.response.data.status === 404) {
-          setError("Please enter valid country")
+          setError("Please enter valid country");
         } else {
           setError(
             error.response.data.message + " " + error.response.data.status
-          )
+          );
         }
-      })
-  }, [])
+      });
+  }, []);
   useEffect(() => {
-    darkModeToggle(window.localStorage.getItem("mode"))
-  }, [countryData, error])
+    darkModeToggle(window.localStorage.getItem("mode"));
+  }, [countryData, error]);
   // console.log("from details=", props)
   return (
     <>
@@ -80,7 +79,7 @@ function Details(props) {
         ""
       )}
     </>
-  )
+  );
 }
 
-export default Details
+export default Details;
